@@ -1,0 +1,152 @@
+<!DOCTYPE html> 
+<html lang="th"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Gamer Profile</title> 
+    <style> 
+        /* --- ตั้งค่าพื้นฐาน --- */
+        body { margin: 0; font-family: sans-serif; background-color: #121212; color: white; }
+
+        header { 
+            background-color: #1a1a1a; 
+            padding: 10px 20px;
+            border-bottom: 2px solid #333;
+            position: relative;
+        } 
+
+        /* จัดให้ Logo กับ ปุ่ม อยู่บรรทัดเดียวกัน */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- เมนูบาร์ (ปกติ) --- */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        } 
+
+        nav a { color: #bbb; text-decoration: none; font-size: 18px; transition: 0.3s; } 
+        nav a:hover { color: #00ffcc; }
+
+        /* ปุ่ม Subscribe (ขวาบน) */
+        .sub-btn { 
+            background-color: #00ffcc; border: none; padding: 5px 15px; 
+            border-radius: 4px; font-weight: bold; cursor: pointer;
+        }
+
+        /* --- ส่วนสำคัญ: ปุ่ม Hamburger & Checkbox --- */
+        
+        /* 1. ซ่อนกล่องติ๊กถูกไว้ (ห้ามลบ แต่ซ่อนไว้) */
+        #menu-toggle { display: none; }
+
+        /* 2. สร้างปุ่ม 3 ขีด (Hamburger Label) */
+        .hamburger-label {
+            display: none; /* ซ่อนในคอม */
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .hamburger-label span {
+            width: 30px; height: 3px; background-color: white; border-radius: 5px;
+        }
+
+        /* --- Layout: Container Row (ซ้าย-กลาง-ขวา) --- */
+        .container { 
+            display: flex; flex-direction: row; 
+            justify-content: space-between; padding: 20px; gap: 20px; 
+            max-width: 1200px; margin: 0 auto;
+        } 
+
+        aside { flex: 0 0 200px; background-color: #1e1e1e; padding: 20px; border-radius: 10px; text-align: center; }
+        main { flex: 1; background-color: #1e1e1e; padding: 30px; border-radius: 10px; text-align: center; } 
+
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #00ffcc; margin-bottom: 15px; }
+        .product-img { width: 100%; border-radius: 5px; }
+        .buy-btn { width: 100%; padding: 8px; margin-top: 10px; border: none; border-radius: 4px; cursor: pointer; }
+
+        /* --- มือถือ (Mobile Responsive) --- */
+        @media (max-width: 768px) {
+            /* 1. ให้ container เรียงแนวตั้ง */
+            .container { flex-direction: column; }
+            aside { width: auto; flex: none; }
+
+            /* 2. แสดงปุ่ม hamburger */
+            .hamburger-label { display: flex; }
+
+            /* 3. ซ่อนเมนูไว้ก่อน */
+            .nav-menu {
+                display: none; 
+                flex-direction: column;
+                background-color: #222;
+                padding: 10px;
+                text-align: center;
+                border-top: 1px solid #333;
+            }
+            .nav-menu a { padding: 10px; border-bottom: 1px solid #333; }
+
+            /* 4. ทีเด็ด CSS: ถ้า Checkbox ถูกติ๊ก (:checked) ให้แสดงเมนูที่อยู่ติดกัน (~) */
+            #menu-toggle:checked ~ .nav-menu {
+                display: flex;
+            }
+            
+            /* ซ่อนปุ่ม subscribe ในมือถือถ้ารก หรือจะเอาไปใส่ใน nav ก็ได้ */
+            .header-right { display: none; }
+        }
+    </style> 
+</head> 
+<body> 
+
+    <header>
+        <div class="header-top">
+            <div style="font-size: 24px; font-weight: bold;">GAME<span style="color:#00ffcc;">SHOP</span></div>
+            
+            <label for="menu-toggle" class="hamburger-label">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="header-right">
+                <button class="sub-btn">Subscribe</button> 
+            </div>
+        </div>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <nav class="nav-menu"> 
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Login</a>
+        </nav> 
+    </header> 
+
+    <div class="container"> 
+        <aside> 
+            <p style="color:pink">✨ สินค้าแนะนำ</p>
+            <img src="ad-one.jpg" alt="สบู่" class="product-img">
+            <p>สบู่เกมเมอร์</p>
+            <button class="buy-btn" style="background:pink;">ซื้อเลย</button>
+        </aside> 
+
+        <main> 
+            <img src="logo.jpg" alt="Profile" class="profile-img">
+            <h2 style="color:#00ffcc">Admin GameShop</h2> 
+            <p>ยินดีต้อนรับครับ!</p>
+        </main> 
+
+        <aside> 
+            <p style="color:#00ffcc">🔥 โปรโมชั่น</p>
+            <img src="game-add.jpg" alt="เกม" class="product-img">
+            <p>เกมลดราคา 50%</p>
+            <button class="buy-btn" style="background:#00ffcc;">เติมเงิน</button>
+        </aside> 
+    </div> 
+
+</body> 
+</html>
